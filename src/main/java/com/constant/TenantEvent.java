@@ -1,6 +1,8 @@
 package com.constant;
 
 
+import com.java.compareTo.Person;
+
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -34,10 +36,8 @@ public enum TenantEvent {
             default:
                 System.out.println("default");
         }*/
-        try {
-            List<String> list = null;
-            list.clear();
-        }catch (Exception e){e.printStackTrace();}
+        System.out.println(ADD_NEW_TENANT.ordinal());
+        System.out.println(REMOVE_TENANT.ordinal());
 
     }
     public static boolean check(String s){

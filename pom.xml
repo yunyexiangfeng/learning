@@ -10,13 +10,13 @@
 
   <name>learning</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+<!--  <url>http://www.example.com</url>-->
 
   <!-- Inherit defaults from Spring Boot -->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.2.0.BUILD-SNAPSHOT</version>
+    <version>2.1.11.RELEASE</version>
   </parent>
 
   <!-- Add typical dependencies for a web application -->
@@ -24,19 +24,42 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>log4j-to-slf4j</artifactId>
+          <groupId>org.apache.logging.log4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!--配置文件处理器，配置文件进行绑定会有提示-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-activemq</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
-    <dependency>
-      <groupId>org.springframework.kafka</groupId>
-      <artifactId>spring-kafka</artifactId>
-      <version>2.3.3.RELEASE</version>
-    </dependency>
     <dependency>
       <groupId>io.codis.jodis</groupId>
       <artifactId>jodis</artifactId>
       <version>0.5.1</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk15on</artifactId>
+      <version>1.60</version>
+    </dependency>
   </dependencies>
 
 
@@ -53,7 +76,7 @@
 
   <!-- Add Spring repositories -->
   <!-- (you don't need this if you are using a .RELEASE version) -->
-  <repositories>
+  <!--<repositories>
     <repository>
       <id>spring-snapshots</id>
       <url>https://repo.spring.io/snapshot</url>
@@ -63,7 +86,7 @@
       <id>spring-milestones</id>
       <url>https://repo.spring.io/milestone</url>
     </repository>
-  </repositories>
+  </repositories>-->
   <pluginRepositories>
     <pluginRepository>
       <id>spring-snapshots</id>

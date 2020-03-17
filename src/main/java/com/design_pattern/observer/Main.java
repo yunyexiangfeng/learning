@@ -8,6 +8,5 @@ public class Main {
 
         Subject subject = new Subject();
         subject.setState("update");
-        subject.notifyObserver();
     }
 }
