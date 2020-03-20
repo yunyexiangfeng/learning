@@ -1,6 +1,27 @@
+#debug: true
+#logging:
+#  file: learning.log
+#  level:
+#    com: debug
+
+
+person:
+  name: cot
+  age: 25
+  sex: 1
+  maps:
+    name: m1
+  pets:
+    - dog
+    - cat
+    - pig
+    - birds
+
+#ActiveMQ
 spring:
-  kafka:
-    producer:
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring.json.type.mapping: foo:com.common.Foo1,bar:com.common.Bar1
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+
+
