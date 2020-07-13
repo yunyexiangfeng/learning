@@ -18,7 +18,7 @@
 
 ## UML
 
-![](./images/strategy_uml.png)
+![](../../../../../resources/images/design_pattern/strategy/strategy_uml.png)
 
 
 
