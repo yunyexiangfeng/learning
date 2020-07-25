@@ -19,5 +19,5 @@ import org.springframework.stereotype.Repository;
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     @Query(value = "select a from #{#entityName} a where a.id =:id")
-    public Student getStudentById(@Param("id") String id);
+    public Student getStudentById(@Param("id") int id);
 }

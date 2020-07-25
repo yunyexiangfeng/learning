@@ -6,6 +6,36 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 public class CyclicBarrierDemo {
+
+    static CyclicBarrier barrier;
+
+    public static void main(String[] args) {
+        barrier = new CyclicBarrier(2);
+        for (int i = 0; i < 10; i ++){
+            (new Thread(new Solver(barrier))).start();
+        }
+        System.out.println("Mainly things have done");
+    }
+
+    static class Solver implements Runnable{
+        CyclicBarrier barrier;
+        public Solver(CyclicBarrier barrier) {
+            this.barrier = barrier;
+        }
+
+        @Override
+        public void run() {
+            try {
+                System.out.println(Thread.currentThread().getName() + " wait");
+                barrier.await();
+                System.out.println(Thread.currentThread().getName() + " wake up");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (BrokenBarrierException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
 
 class Solver {

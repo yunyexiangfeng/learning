@@ -36,7 +36,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student getStudent(String id) {
+    public Student getStudent(int id) {
         return repository.getStudentById(id);
     }
 }

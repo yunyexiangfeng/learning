@@ -12,5 +12,5 @@ public interface StudentService {
 
     public List<Student> listStudent();
 
-    public Student getStudent(String id);
+    public Student getStudent(int id);
 }

@@ -3,10 +3,7 @@ package com.web.Entity;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.Persistent;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @version 1.0
@@ -21,8 +18,9 @@ import javax.persistence.Id;
 public class Student {
 
     @Id()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "s_id")
-    private String id;
+    private int id;
 
     @Column(name = "s_name")
     private String name;
@@ -43,11 +41,11 @@ public class Student {
                 '}';
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -19,6 +19,12 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
 
+        ArrayList<Integer> list = new ArrayList<>(14);
+        list.add(2);
+        System.out.println(list.size());
+        list.forEach(i -> {
+            System.out.println(i);
+        });
     }
 
     public static Integer getInt(){

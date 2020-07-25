@@ -50,7 +50,7 @@ public class StudentsController {
 
     @GetMapping(value = {"student"})
     @ResponseBody
-    public Student getStudent(String id){
+    public Student getStudent(int id){
         logger.info("student's id:" + id);
         return studentService.getStudent(id);
     }
