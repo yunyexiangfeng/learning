@@ -36,10 +36,13 @@ public class ProducerDemo {
             //1.JMS producer
             //create session
             Session session = connection.createSession(false, JmsProperties.AcknowledgeMode.AUTO.getMode());
+            //if support transaction
+//            Session session = connection.createSession(false, Session.SESSION_TRANSACTED);
 
             //create Destination
             Queue producerQ = session.createQueue("producer");
             MessageProducer producer = session.createProducer(producerQ);
+            producer.setDeliveryMode(DeliveryMode.PERSISTENT);
             producer.send(session.createTextMessage("producer test"));
 
             //2.ActiveMQ sender

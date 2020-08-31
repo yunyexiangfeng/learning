@@ -38,7 +38,7 @@ public class StudentsController {
         logger.info("page number:" + pageUtil.getPageNumber());
         logger.info("page size:" + pageUtil.getPageSize());
 
-        Pageable pageable = new PageRequest(pageUtil.getPageNumber(), pageUtil.getPageSize());
+        Pageable pageable = PageRequest.of(pageUtil.getPageNumber(), pageUtil.getPageSize());
         return studentService.pageStudent(pageable);
     }
 
