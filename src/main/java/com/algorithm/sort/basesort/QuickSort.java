@@ -32,10 +32,10 @@ public class QuickSort {
 //            int pivotLocation = partitionHigh(array, low, high);
 //            int pivotLocation = partitionMid(array, low, high);
             int pivotLocation = partition(array, low, high);
-            System.out.println("pivot location : " + pivotLocation);
-            System.out.println("-------------------------");
-//            qSort(array, low, pivotLocation -1);
-//            qSort(array, pivotLocation + 1, high);
+//            System.out.println("pivot location : " + pivotLocation);
+//            System.out.println("-------------------------");
+            qSort(array, low, pivotLocation -1);
+            qSort(array, pivotLocation + 1, high);
         }
     }
 
