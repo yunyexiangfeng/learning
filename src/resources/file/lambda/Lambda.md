@@ -1,18 +1,34 @@
-# Lambda
+# Java8新特性
 
-表示匿名函数或者闭包的运算符
+
+
+##Lambda
+
+表示匿名函数或者闭包的运算符，包含参数列表、函数主题、返回类型，可能还有一个可以抛出的异常列表。
 
 为什么需要lambda表达式：
 
-在Java中，无法将函数作为参数传递给一个方法，也无法声明一个返回函数的方法
+- 将函数/Lambda作为参数传递给一个方法
+- 更充分、简单的利用多核处理器
 
-
+可以在函数式接口上使用Lambda表达式
 
 ### 1.语法
 
 (parameters) -> expression
+
+（表达式-风格）
+
 或
-(parameters) ->{ statements; }
+(parameters) -> { statements; }
+
+（块-风格）
+
+包含三个部分：
+
+- 参数列表
+- 箭头
+- Lambda主体
 
 
 
@@ -27,26 +43,48 @@
 
 
 
+###3.示例
+
+根据上述语法规则，以下哪个不是有效的Lambda表达式?
+
+```java
+public static void main(String[] args) {
+    //1
+    //        () -> {};
+    //2
+    //        () -> "Raoul";
+    //3
+    //        () -> {return "hello";};
+    //4
+    //        (Integer i) -> return "cc" + i;
+    //5
+    //        (String s) -> {"cc";};
+}
+```
+
+只有(4)和(5)是无效的Lambda，其余都是有效的。详细解释如下
+
+4.return是一个控制流语句。要使此Lambda有效，需要使用花括号
+
+5.“Iron Man”是一个表达式，不是一个语句。要使此Lambda有效，可以去除花括号和分号
 
 
 
+## 函数式接口
 
-# 函数式接口
+###定义
 
-
-
-Functional Interface：
-
-- 有且仅有一个抽象方法，且该方法不可override java.lang.Object类的public方法
-- 使用@FunctionalInterface注解申明函数式接口，告诉编译器在编译期检查函数式接口的合法性
+有且仅有一个抽象方法的接口。且该方法不可override java.lang.Object类的public方法。可以使@FunctionalInterface注解申明函数式接口，告诉编译器在编译期检查函数式接口的合法性
 
 函数式接口可以被隐式转换为Lambda表达式，Java8之前使用匿名函数实现，之后用lambda表达式实现
 
 由引用传递到==行为传递==的转变
 
-###Java8中核心函数式接口
+Java8中核心函数式接口有如下
 
-####1. Function功能接口
+###Function功能接口
+
+只有apply一个抽象方法，其他为默认方法
 
 提供功能转换
 
@@ -131,7 +169,7 @@ public interface Function<T, R> {
 
 
 
-####2. Consumer消费接口
+###Consumer消费接口
 
 ```java
 /**
@@ -221,7 +259,7 @@ public void testConsumerInterface(){
 
 
 
-####3. Supplier生产接口
+###Supplier生产接口
 
 ```java
 /**
@@ -250,19 +288,11 @@ public interface Supplier<T> {
 
 
 
+###Predicate断言接口
 
 
 
-
-
-
-####4. Predicate断言接口
-
-
-
-####5. Operator操作接口
-
-
+###Operator操作接口
 
 
 
@@ -316,7 +346,7 @@ public interface Supplier<T> {
 
 
 
-# 默认方法
+## 默认方法
 
 ###1.default method
 
@@ -373,7 +403,7 @@ public interface Vehicle {
 
 
 
-# Stream
+## Stream
 
 Stream是java8中新提供给开发者一组操作集合的API，将要处理的元素看作一种流，流在管道中传输，并可以在管道的节点上进行处理，比如排序、筛选、聚合等。
 

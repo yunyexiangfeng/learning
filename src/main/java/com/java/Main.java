@@ -19,12 +19,18 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList<Integer> list = new ArrayList<>(14);
-        list.add(2);
-        System.out.println(list.size());
-        list.forEach(i -> {
-            System.out.println(i);
-        });
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(0);
+        head.next.next = new ListNode(1);
+
+        int ans = 0;
+        while (head != null){
+            ans = ans << 1;
+            ans += head.val;
+            head = head.next;
+        }
+        System.out.println(ans);
+
     }
 
     public static Integer getInt(){
@@ -34,4 +40,9 @@ public class Main {
     public static void personCompare(List<Person> persons){
 
     }
+}
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) { val = x; }
 }
