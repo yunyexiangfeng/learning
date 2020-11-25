@@ -10,6 +10,9 @@ public class Apple {
 
     private int weight;
 
+    public Apple() {
+    }
+
     public Apple(String color) {
         this.color = color;
     }

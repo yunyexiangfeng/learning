@@ -13,7 +13,7 @@
 
 可以在函数式接口上使用Lambda表达式
 
-### 1.语法
+### 语法
 
 (parameters) -> expression
 
@@ -32,7 +32,7 @@
 
 
 
-###2.特性
+###特性
 
 - 可选类型声明：不需要声明参数类型，编译器可以统一识别参数值
 - 可选的参数圆括号：一个参数可以无需圆括号，但多个参数需要定义圆括号
@@ -43,7 +43,7 @@
 
 
 
-###3.示例
+###示例
 
 根据上述语法规则，以下哪个不是有效的Lambda表达式?
 
@@ -67,6 +67,85 @@ public static void main(String[] args) {
 4.return是一个控制流语句。要使此Lambda有效，需要使用花括号
 
 5.“Iron Man”是一个表达式，不是一个语句。要使此Lambda有效，可以去除花括号和分号
+
+### 异常处理
+
+Java提供的API中，所有的函数式接口都不允许抛出受检异常(checked exception)
+
+如果需要lambda表达式抛出异常，有两种方式
+
+1. 定义一个自己的函数式接口，并申明受检异常
+2. 显示捕捉受检异常
+
+```java
+//自定义函数式接口
+@FunctionalInterface
+public interface BufferedReaderProcessor {
+    String process(BufferedReader br) throws IOException;
+}
+```
+
+
+
+```java
+//显示捕捉异常
+Function<BufferedReader, String> function = (br) -> {
+    try {
+        return br.readLine();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return null;
+};
+```
+
+
+
+### 局部变量
+
+Lambda使用局部变量（lambda表达式主体外部变量）
+
+```java
+int number = 100;
+Runnable r = () -> System.out.println(number);
+```
+
+Lambda默认使用final变量，即常量，原因有二
+
+1. 实例变量和局部变量背后的实现有一个关键不同。实例变量都存储在堆中，局部变量则保存在栈上。如果Lambda可以直接访问局部变量，而且Lambda是在一个线程中使用的，则使用Lambda的线程，可能会在分配该变量的线程将这个变量收回之后，去访问该变量。因此，Java在访问自由局部变量时，实际上是在访问它的副本，而不是访问基本变量
+2. 这一限制不鼓励你使用改变外部变量的典型命令式编程模式（我们会在以后的各章中解释，这种模式会阻碍很容易做到的并行处理）
+
+
+
+### 方法引用
+
+方法引用可以被看作仅仅调用特定方法的Lambda的一种快捷写法。它的基本思想是，如果一个Lambda代表的只是“直接调用这个方法”，那最好还是用名称来调用它，而不是去描述如何调用它
+
+#### 优点
+
+增加可读性
+
+#### 分类
+
+1. 指向静态方法的方法引用
+
+   > Integer::parseInt
+
+2. 指向任意类型实例方法的方法引用
+
+   > String::length
+
+3. 指向现存对象或表达式实例方法的方法引用
+
+   第三种方法引用主要用在你需要在Lambda中调用一个现存外部对象的方法时
+
+   > ()->expensive-Transaction.getValue()
+
+### 构造函数
+
+对于一个现有构造函数，你可以利用它的名称和关键字new来创建它的一个引用：ClassName::new。它的功能与指向静态方法的引用类似
+
+
 
 
 
@@ -167,8 +246,6 @@ public interface Function<T, R> {
 
 
 
-
-
 ###Consumer消费接口
 
 ```java
@@ -218,8 +295,6 @@ public interface Consumer<T> {
 
 - void accept(T t)：接受数据
 - Consumer<T> andThen(Consumer<? super T> after)：重复接受数据
-
-
 
 
 
