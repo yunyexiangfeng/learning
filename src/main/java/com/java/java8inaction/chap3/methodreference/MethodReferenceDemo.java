@@ -71,7 +71,7 @@ public class MethodReferenceDemo {
         System.out.println(apple.toString());
 
 
-        //example
+        //4.example
         Map<String, Function<String, Apple>> map = new HashMap<>();
         map.put("redApple", Apple::new);
         map.put("greenApple", Apple::new);
