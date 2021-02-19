@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>springboot_webflux</module>
-      <module>base</module>
+        <module>base</module>
     </modules>
 
     <name>learning</name>
@@ -24,23 +24,8 @@
     <version>2.1.11.RELEASE</version>
   </parent>
 
-  <!-- Add typical dependencies for a web application -->
   <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>log4j-to-slf4j</artifactId>
-          <groupId>org.apache.logging.log4j</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
 
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
     <!--配置文件处理器，配置文件进行绑定会有提示-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -48,43 +33,13 @@
       <optional>true</optional>
     </dependency>
 
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-activemq</artifactId>
-    </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
-    <dependency>
-      <groupId>io.codis.jodis</groupId>
-      <artifactId>jodis</artifactId>
-      <version>0.5.1</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
-    <dependency>
-      <groupId>org.bouncycastle</groupId>
-      <artifactId>bcprov-jdk15on</artifactId>
-      <version>1.60</version>
-    </dependency>
-
-    <!--configure database connection driver-->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/cglib/cglib -->
-    <dependency>
-      <groupId>cglib</groupId>
-      <artifactId>cglib</artifactId>
-      <version>3.3.0</version>
-    </dependency>
-
   </dependencies>
+
 
 
   <!-- Package as an executable jar -->
