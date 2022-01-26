@@ -11,6 +11,8 @@
     <modules>
         <module>springboot_webflux</module>
         <module>base</module>
+        <module>elasticsearch</module>
+        <module>kafka</module>
     </modules>
 
     <name>learning</name>
