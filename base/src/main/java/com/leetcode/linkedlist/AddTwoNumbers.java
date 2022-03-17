@@ -16,36 +16,83 @@ public class AddTwoNumbers {
         };
 //        System.out.println(function.apply(1, 1));
 
-        ListNode l1 = new ListNode(7);
-        l1.next = new ListNode(1);
-        l1.next.next = new ListNode(6);
+        ListNode l1 = new ListNode(5);
+//        l1.next = new ListNode(1);
+//        l1.next.next = new ListNode(6);
         ListNode l2 = new ListNode(5);
-        l2.next = new ListNode(9);
-        l2.next.next = new ListNode(2);
+//        l2.next = new ListNode(9);
+//        l2.next.next = new ListNode(2);
+
+
         print(addTwoNumbers(l1, l2));
     }
 
+    /*public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if (l1 == null)
+            return l2;
+        if (l2 == null)
+            return l1;
+        //计算l1和l2长度
+        int len1 = 0;
+        ListNode temp = l1;
+        while (temp.next != null){
+            len1 ++;
+            temp = temp.next;
+        }
+        int len2 = 0;
+        temp = l2;
+        while (temp.next != null){
+            len2 ++;
+            temp = temp.next;
+        }
+        BiFunction<Integer, Integer, Boolean> function = (x, y) -> {
+            if(x.intValue() <= y.intValue()) return true;
+            return false;
+        };
+        ListNode head;
+        int count = 0;
+        //合并链表
+        if (function.apply(len1, len2)){
+            head = l2;
+            while (l1 != null){
+                int val = l2.val + l1.val;
+                if (val < 10){
+                    l2.val = val + count;
+                    count = 0;
+                }else {
+                    l2.val = val % 10 + count;
+                    count = val / 10;
+                }
+                l1 = l1.next;
+                l2 = l2.next;
+            }
+        }else {
+            head = l1;
+            while (l2 != null){
+                int val = l2.val + l1.val;
+                if (val < 10){
+                    l1.val = val + count;
+                    count = 0;
+                }else {
+                    l1.val = val % 10 + count;
+                    count = val / 10;
+                }
+                l1 = l1.next;
+                l2 = l2.next;
+            }
+        }
+
+        return head;
+    }*/
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null)
             return l2;
         if (l2 == null)
             return l1;
+        while (l1 != null || l1 != null){
 
-        ListNode head = new ListNode(0);
-        while (l1.next != null || l2.next != null){
-            if (l1.next != null && l2.next != null){
-                head.next = new ListNode(l1.next.val + l2.next.val);
-                l1 = l1.next;
-                l2 = l2.next;
-            }else if (l1.next != null && l2.next == null){
-                head.next = new ListNode(l1.next.val);
-                l1 = l1.next;
-            }else if (l1.next == null && l2.next != null){
-                head.next = new ListNode(l2.next.val);
-                l2 = l2.next;
-            }
-            head = head.next;
         }
+
         return head;
     }
 
