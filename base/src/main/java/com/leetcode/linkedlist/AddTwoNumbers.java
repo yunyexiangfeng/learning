@@ -1,6 +1,5 @@
 package com.leetcode.linkedlist;
 
-import java.util.function.BiFunction;
 
 /**
  * https://leetcode-cn.com/problems/sum-lists-lcci/
@@ -10,111 +9,52 @@ import java.util.function.BiFunction;
  */
 public class AddTwoNumbers {
     public static void main(String[] args) {
-        BiFunction<Integer, Integer, Integer> function = (x, y) -> {
-            if(x.intValue() >= y.intValue()) return x;
-            else return y;
-        };
-//        System.out.println(function.apply(1, 1));
-
-        ListNode l1 = new ListNode(5);
+        ListNode l1 = new ListNode(1);
 //        l1.next = new ListNode(1);
 //        l1.next.next = new ListNode(6);
-        ListNode l2 = new ListNode(5);
-//        l2.next = new ListNode(9);
+        ListNode l2 = new ListNode(9);
+        l2.next = new ListNode(9);
 //        l2.next.next = new ListNode(2);
-
-
-        print(addTwoNumbers(l1, l2));
+        Util.print(addTwoNumbers(l1, l2));
     }
 
-    /*public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if (l1 == null)
-            return l2;
-        if (l2 == null)
-            return l1;
-        //计算l1和l2长度
-        int len1 = 0;
-        ListNode temp = l1;
-        while (temp.next != null){
-            len1 ++;
-            temp = temp.next;
-        }
-        int len2 = 0;
-        temp = l2;
-        while (temp.next != null){
-            len2 ++;
-            temp = temp.next;
-        }
-        BiFunction<Integer, Integer, Boolean> function = (x, y) -> {
-            if(x.intValue() <= y.intValue()) return true;
-            return false;
-        };
-        ListNode head;
-        int count = 0;
-        //合并链表
-        if (function.apply(len1, len2)){
-            head = l2;
-            while (l1 != null){
-                int val = l2.val + l1.val;
-                if (val < 10){
-                    l2.val = val + count;
-                    count = 0;
-                }else {
-                    l2.val = val % 10 + count;
-                    count = val / 10;
-                }
-                l1 = l1.next;
-                l2 = l2.next;
-            }
-        }else {
-            head = l1;
-            while (l2 != null){
-                int val = l2.val + l1.val;
-                if (val < 10){
-                    l1.val = val + count;
-                    count = 0;
-                }else {
-                    l1.val = val % 10 + count;
-                    count = val / 10;
-                }
-                l1 = l1.next;
-                l2 = l2.next;
-            }
-        }
-
-        return head;
-    }*/
+    /**
+     * 链表求和
+     * 反向链表，个位排在链表首部
+     * tips: 创建一个新链表
+     * 如果是正向链表，可构建两个栈
+     * @param l1 链表1
+     * @param l2 链表2
+     * @return 链表求和结果
+     */
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null)
             return l2;
         if (l2 == null)
             return l1;
-        while (l1 != null || l1 != null){
-
+        //临时节点
+        ListNode node = new ListNode(0);
+        //头节点
+        ListNode head = node;
+        int count = 0;
+        while (l1 != null || l2 != null || count != 0){
+            int sum = 0;
+            if (l1 != null){
+                sum = l1.val + sum;
+                l1 = l1.next;
+            }
+            if (l2 != null){
+                sum = l2.val + sum;
+                l2 = l2.next;
+            }
+            //个位
+            node.next = new ListNode((sum + count) % 10);
+            //十位
+            count = (sum + count) / 10;
+            //移动指针
+            node = node.next;
         }
-
-        return head;
+        return head.next;
     }
 
-    /**
-     * 打印链表
-     * @param head 表头
-     */
-    private static void print(ListNode head){
-        if (head == null)
-            return;
-        while (head != null){
-            System.out.println(head.val);
-            head = head.next;
-        }
-    }
-
-    /**
-     * 链表类
-     */
-    private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
-    }
 }

@@ -23,7 +23,7 @@ public class RemoveDuplicateNodes {
         ln.next.next.next = new ListNode(1);
         ln.next.next.next.next = new ListNode(2);
         ListNode listNode = removeDuplicateNodes(ln);
-        print(listNode);
+        Util.print(listNode);
     }
 
     /**
@@ -49,28 +49,4 @@ public class RemoveDuplicateNodes {
         }
         return tHead;
     }
-
-
-    /**
-     * 打印链表
-     * @param head 表头
-     */
-    private static void print(ListNode head){
-        if (head == null)
-            return;
-        while (head != null){
-            System.out.println(head.val);
-            head = head.next;
-        }
-    }
-
-    /**
-     * 链表类
-     */
-     private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
-    }
-
 }
